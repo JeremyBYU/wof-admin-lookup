@@ -11,10 +11,10 @@ const _ = require('lodash');
  * @param {object} [pipService] optional, primarily used for testing
  * @constructor
  */
-function LocalPipService(datapath, layers) {
+function LocalPipService(datapath, layers, localizedAdminNames) {
   const self = this;
 
-  createPipService(datapath, _.defaultTo(layers, []), false, (err, service) => {
+  createPipService(datapath, _.defaultTo(layers, []), localizedAdminNames, (err, service) => {
     if (err) {
       throw err;
     }
@@ -95,6 +95,6 @@ LocalPipService.prototype.end = function end() {
  * @param {string} [datapath]
  * @returns {LocalPIPService}
  */
-module.exports = (datapath, layers) => {
-  return new LocalPipService(datapath, layers);
+module.exports = (datapath, layers, localizedAdminNames) => {
+  return new LocalPipService(datapath, layers, localizedAdminNames);
 };
